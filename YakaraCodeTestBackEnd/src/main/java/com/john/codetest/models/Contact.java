@@ -1,6 +1,7 @@
 package com.john.codetest.models;
 
 import jakarta.persistence.*;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.List;
 
@@ -21,6 +22,16 @@ public class Contact {
     private List<EmailRecord> emailRecord;
 
     public Contact() {
+    }
+
+    public void normaliseFormInput(){
+        this.email = this.email.trim();
+        this.name = this.name.trim();
+    }
+    public boolean isValidContact(){
+
+        EmailValidator emailValidator = EmailValidator.getInstance();
+        return emailValidator.isValid(this.email.trim()) && this.name.trim().length() > 1;
     }
 
 

@@ -9,10 +9,12 @@ public class ContactUtils {
 
     public static Contact handleContactInfoSave(Contact contact, ContactRepository contactRepository) {
 
+
         String emailAddress = contact.getEmail();
-        Optional<Contact> existingContact = contactRepository.findByEmailAddress(emailAddress);
+        Optional<Contact> existingContact = contactRepository.findByEmail(emailAddress);
 
         if (existingContact.isEmpty()) {
+            contact.normaliseFormInput();
             contactRepository.save(contact);
             return contact;
         } else {

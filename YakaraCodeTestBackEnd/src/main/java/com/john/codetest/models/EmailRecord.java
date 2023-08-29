@@ -17,6 +17,11 @@ public class EmailRecord {
     @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
 
+    public EmailRecord(Template template, Contact contact) {
+        this.template = template;
+        this.contact = contact;
+    }
+
     public EmailRecord() {
     }
 
