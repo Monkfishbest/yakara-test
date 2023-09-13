@@ -1,9 +1,17 @@
-const templateApiUrl = ""
+const templateApiUrl = "http://localhost:8080/templates"
 
-const templateEmailServices = {
+const TemplateEmailServices = {
     getTemplates(){ 
-        fetch()
-    }
+        return fetch(templateApiUrl)
+        .then(res => res.json())
+
+    },
+
+    
+
+
 
 }
+
+export default TemplateEmailServices
 

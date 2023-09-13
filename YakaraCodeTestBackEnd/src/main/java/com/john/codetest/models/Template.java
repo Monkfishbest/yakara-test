@@ -1,5 +1,6 @@
 package com.john.codetest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Template {
     private String templateContent;
 
     @OneToMany(mappedBy = "template")
+    @JsonIgnore
     private List<EmailRecord> emailRecord;
 
     public Template() {
