@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "email_records")
 public class EmailRecord {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

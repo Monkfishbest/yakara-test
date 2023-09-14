@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name ="templates")
 public class Template {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

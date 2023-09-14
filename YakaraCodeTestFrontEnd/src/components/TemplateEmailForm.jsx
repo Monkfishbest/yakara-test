@@ -32,9 +32,15 @@ const TemplateEmailForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Name:', name);
-        console.log('Email:', email);
-        console.log('Selected Template:', selectedTemplate);
+
+        const emailRecordToSubmit = {
+            template : {...selectedTemplate},
+            contact : { email, name}
+        }
+        setEmail("")
+        setName("")
+
+        TemplateEmailServices.postRecord(emailRecordToSubmit)
     };
 
     return (
@@ -59,7 +65,6 @@ const TemplateEmailForm = () => {
                     <label htmlFor="template">Select Email Template:</label>
                     <select
                         id="template"
-                        value={selectedTemplate}
                         onChange={handleSetSelectedTemplate}
                         required
                     >
@@ -69,7 +74,7 @@ const TemplateEmailForm = () => {
                 <button type="submit">Submit</button>
             </form>
             <span> Template content preview</span>
-            { selectedTemplate !== {} ? <p id="text-box">{selectedTemplate.templateContent}</p> : <p>loading</p>}
+            { Object.keys(selectedTemplate).length === 0 ? <p>loading...</p> : <p id="text-box">{selectedTemplate.templateContent}</p> }
         </>
     );
 }

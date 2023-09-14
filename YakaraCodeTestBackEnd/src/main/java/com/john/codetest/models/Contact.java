@@ -1,5 +1,6 @@
 package com.john.codetest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -9,7 +10,8 @@ import java.util.List;
 @Table(name="contacts")
 public class Contact {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id" )
     private Long id;
 
     @Column(unique = true)
@@ -18,6 +20,7 @@ public class Contact {
     @Column
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "contact")
     private List<EmailRecord> emailRecord;
 
