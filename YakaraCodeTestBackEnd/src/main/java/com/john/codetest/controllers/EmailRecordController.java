@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmailRecordController {
 
     @Autowired
-    private JavaMailSender javaMailSender;
+    JavaMailSender javaMailSender;
 
     @Autowired
     ContactRepository contactRepository;
@@ -28,11 +28,11 @@ public class EmailRecordController {
     EmailRecordRepository emailRecordRepository;
 
     @PostMapping("/email-records")
-    public ResponseEntity<EmailRecord> saveRecord(@RequestBody EmailRecord emailRecord) {
+    public ResponseEntity<?> saveRecord(@RequestBody EmailRecord emailRecord) {
 
         Contact contactFromRequest = emailRecord.getContact();
         if (!contactFromRequest.isValidContact()){
-            return new ResponseEntity<>(emailRecord, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Error: the contact details from the request where invalid", HttpStatus.BAD_REQUEST);
         }
 
         Contact contact = ContactUtils.handleSaveContactInfo(contactFromRequest, contactRepository);
@@ -42,9 +42,10 @@ public class EmailRecordController {
             EmailService.sendTemplateEmail(emailRecord, javaMailSender);
         } catch(MailException exception) {
             exception.printStackTrace();
-            return new ResponseEntity<>(emailRecord, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error: Something went wrong when trying to send the email", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         emailRecordRepository.save(emailRecord);
+
         return new ResponseEntity<>(emailRecord, HttpStatus.CREATED );
     }
 

@@ -13,7 +13,7 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(emailRecord.getContact().getEmail());
         message.setSubject("You have a new message from Yakara");
-        String emailBody = String.format("Hello %s, this is a message from Yakara\n %s", emailRecord.getContact().getName(), emailRecord.getTemplate().getTemplateContent());
+        String emailBody = String.format("Hello %s, this is a message from Yakara\n\n %s", emailRecord.getContact().getName(), emailRecord.getTemplate().getTemplateContent());
         message.setText(emailBody);
 
         javaMailSender.send(message);
