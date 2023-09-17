@@ -9,7 +9,9 @@ vite
 Prerequesit installs for running this coding test.
 
 `postgresql`
+
 `node`
+
 `java`
 
 
@@ -53,4 +55,5 @@ After this run the `main` function YakaraCodeTestBackEndApplication.java
 change directory into `YakaraCodeTestFrontEnd`
 
 `npm i`
+
 `npm run dev`
