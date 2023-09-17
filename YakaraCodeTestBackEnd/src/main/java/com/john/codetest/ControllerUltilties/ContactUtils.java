@@ -7,8 +7,7 @@ import java.util.Optional;
 
 public class ContactUtils {
 
-    public static Contact handleContactInfoSave(Contact contact, ContactRepository contactRepository) {
-
+    public static Contact handleSaveContactInfo(Contact contact, ContactRepository contactRepository) {
 
         String emailAddress = contact.getEmail();
         Optional<Contact> existingContact = contactRepository.findByEmail(emailAddress);

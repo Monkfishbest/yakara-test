@@ -31,4 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
-secrect-vars.properties
+secret-vars.properties
