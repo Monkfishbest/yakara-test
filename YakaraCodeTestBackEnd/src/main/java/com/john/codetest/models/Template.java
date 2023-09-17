@@ -26,6 +26,12 @@ public class Template {
     public Template() {
     }
 
+    public Template(String templateName, String templateContent, List<EmailRecord> emailRecord) {
+        this.templateName = templateName;
+        this.templateContent = templateContent;
+        this.emailRecord = emailRecord;
+    }
+
     public List<EmailRecord> getEmailRecord() {
         return emailRecord;
     }
